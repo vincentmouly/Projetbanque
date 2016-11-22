@@ -1,12 +1,17 @@
-package com.adaming.myapp.entities;
-
-import java.util.Date;
-
 /*
  * Version: 1.0.0
  * Date: 22-11-2016
  * Author: Florian Goutin / Vincent Mouly / Loic Laugerette
  */
+
+package com.adaming.myapp.entities;
+
+import java.util.Date;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("CompteEpargne")
 public class CompteEpargne extends Compte{
 
 	//=========================
@@ -41,5 +46,12 @@ public class CompteEpargne extends Compte{
 		this.tauxinteret = tauxinteret;
 	}
 
+	//=========================
+	// Getter / Setter
+	//=========================
 	
+	@Override
+	public String toString() {
+		return "CompteEpargne [tauxinteret=" + tauxinteret + "]";
+	}
 }

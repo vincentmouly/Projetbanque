@@ -6,7 +6,11 @@
 package com.adaming.myapp.entities;
 
 import java.util.Date;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("Versement")
 public class Versement extends Operations {
 
 	//=========================
@@ -24,11 +28,6 @@ public class Versement extends Operations {
 
 	public Versement(Date date, double montant) {
 		super(date, montant);
-		// TODO Auto-generated constructor stub
-	}
-
-	public Versement(Long ido, Date date, double montant) {
-		super(ido, date, montant);
 		// TODO Auto-generated constructor stub
 	}
 	

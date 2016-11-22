@@ -1,15 +1,20 @@
-package com.adaming.myapp.entities;
-
-import java.util.Date;
-
-import javax.persistence.*;
 /*
  * Version: 1.0.0
  * Date: 22-11-2016
  * Author: Florian Goutin / Vincent Mouly / Loic Laugerette
  */
+
+package com.adaming.myapp.entities;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+
 @Entity
-public class Compte {
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="Type_Comptes", discriminatorType=DiscriminatorType.STRING)
+public abstract class Compte {
 	
 	//=========================
 	// Attributes
@@ -19,6 +24,24 @@ public class Compte {
 	private long idCompte;
 	private double solde;
 	private Date Date_creation;
+	
+	//=========================
+	// Associations
+	//=========================
+	@ManyToOne
+	@JoinColumn(name="IdBanque")
+	private Banque banque;
+	
+	@ManyToOne
+	@JoinColumn(name="IdEmploye")
+	private Employe employe;
+	
+	@ManyToOne
+	@JoinColumn(name="IdClient")
+	private Client client;
+	
+	@ManyToMany(mappedBy="comptes")
+	private List<Operations> operations = new ArrayList<Operations>();
 	
 	//=========================
 	// Constructor
@@ -36,6 +59,7 @@ public class Compte {
 	//=========================
 	// Getter / Setter
 	//=========================
+	
 	public long getIdCompte() {
 		return idCompte;
 	}
@@ -54,6 +78,40 @@ public class Compte {
 	public void setDate_creation(Date date_creation) {
 		Date_creation = date_creation;
 	}
+	public Banque getBanque() {
+		return banque;
+	}
+	public void setBanque(Banque banque) {
+		this.banque = banque;
+	}
+	public Employe getEmploye() {
+		return employe;
+	}
+	public void setEmploye(Employe employe) {
+		this.employe = employe;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public List<Operations> getOperations() {
+		return operations;
+	}
+	public void setOperations(List<Operations> operations) {
+		this.operations = operations;
+	}
 	
+	//=========================
+	// Getter / Setter
+	//=========================
 	
+	@Override
+	public String toString() {
+		return "Compte [idCompte=" + idCompte + ", solde=" + solde
+				+ ", Date_creation=" + Date_creation + ", banque=" + banque
+				+ ", employe=" + employe + ", client=" + client
+				+ ", operations=" + operations + "]";
+	}
 }

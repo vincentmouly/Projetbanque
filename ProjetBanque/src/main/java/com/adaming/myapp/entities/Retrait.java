@@ -7,17 +7,21 @@
 package com.adaming.myapp.entities;
 
 import java.util.Date;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("Retrait")
 public class Retrait extends Operations {
 
 	//=========================
 	// Attributes
 	//=========================
-				
+					
 	//=========================
 	// Constructor
 	//=========================
-	
+		
 	public Retrait() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -28,15 +32,11 @@ public class Retrait extends Operations {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Retrait(Long ido, Date date, double montant) {
-		super(ido, date, montant);
-		// TODO Auto-generated constructor stub
-	}
-		
 	//=========================
 	// Getter / Setter
 	//=========================
 			
+	
 	//=========================
 	// Methods
 	//=========================
