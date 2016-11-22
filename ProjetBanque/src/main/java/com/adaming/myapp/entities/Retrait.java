@@ -22,6 +22,11 @@ public class Retrait extends Operations {
 	// Constructor
 	//=========================
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Retrait() {
 		super();
 		// TODO Auto-generated constructor stub

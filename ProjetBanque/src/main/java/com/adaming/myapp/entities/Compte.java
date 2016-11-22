@@ -6,16 +6,23 @@
 
 package com.adaming.myapp.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Comptes", discriminatorType=DiscriminatorType.STRING)
-public abstract class Compte {
+
+public abstract class Compte implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//=========================
 	// Attributes
 	//=========================

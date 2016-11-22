@@ -15,6 +15,10 @@ import javax.persistence.Entity;
 @DiscriminatorValue("CompteCourant")
 public class CompteCourant extends Compte{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//=========================
 	// Attributes
 	//=========================

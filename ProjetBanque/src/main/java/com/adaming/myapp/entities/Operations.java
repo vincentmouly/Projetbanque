@@ -6,6 +6,7 @@
 
 package com.adaming.myapp.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,8 +27,13 @@ import javax.persistence.ManyToOne;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Operations", discriminatorType=DiscriminatorType.STRING)
-public abstract class  Operations {
+
+public abstract class  Operations implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//=========================
 	// Attributes
 	//=========================

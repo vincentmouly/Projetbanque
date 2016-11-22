@@ -22,6 +22,11 @@ public class Virement extends Operations{
 	// Constructor
 	//=========================
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Virement() {
 		super();
 		// TODO Auto-generated constructor stub
