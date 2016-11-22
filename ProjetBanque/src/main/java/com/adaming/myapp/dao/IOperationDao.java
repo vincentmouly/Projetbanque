@@ -1,5 +1,9 @@
 package com.adaming.myapp.dao;
 
-public interface IOperationDao extends IGenDao<Operation>{
+import com.adaming.myapp.entities.Operations;
+
+
+
+public interface IOperationDao extends IGenDao<Operations>{
 
 }

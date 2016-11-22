@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import com.adaming.myapp.entities.Groupe;
+
 public class ImpdaoGroupe extends AbstractJpa<Groupe> implements IGroupeDao{
 
 	@Override
@@ -37,6 +39,7 @@ public class ImpdaoGroupe extends AbstractJpa<Groupe> implements IGroupeDao{
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Groupe> getByMc(String mc) {
 		Query query = em.createQuery("from Groupe g where g.nom like :x");
 		query.setParameter("x","%"+mc+"%");

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import com.adaming.myapp.entities.Client;
+import com.adaming.myapp.entities.Employe;
 
 public class ImpDaoEmploye extends AbstractJpa<Employe> implements IEmployeDao{
 
@@ -35,7 +36,7 @@ public class ImpDaoEmploye extends AbstractJpa<Employe> implements IEmployeDao{
 	@Override
 	public List<Employe> getAll() {
 		// TODO Auto-generated method stub
-		return getAbstractJpa();
+		return getAllAbstractJpa();
 	}
 
 	@Override
