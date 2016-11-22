@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+//comments
 public class AbstractJpa<T extends Serializable> {
 	
 	@PersistenceContext
