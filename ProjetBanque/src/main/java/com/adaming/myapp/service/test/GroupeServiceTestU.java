@@ -1,54 +1,89 @@
 package com.adaming.myapp.service.test;
 
 import static org.junit.Assert.*;
-
+import java.util.List;
+import java.util.logging.Logger;
+import org.hamcrest.core.IsEqual;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.adaming.myapp.entities.Groupe;
+import com.adaming.myapp.service.IServiceGroupe;
 
 public class GroupeServiceTestU {
+	
+	//=========================
+	// Attributes
+	//=========================
+	
+	private final Logger LOGGER = Logger.getLogger("BanqueServiceTestU");
+	private static ClassPathXmlApplicationContext context;
+	private static IServiceGroupe service;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		context = new ClassPathXmlApplicationContext("app.xml");
+		service = (IServiceGroupe) context.getBean("ImpServiceGroupe");
 	}
 
+	//=========================
+	// Methods
+	//=========================
+	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Test
-	public void testSetDao() {
-		fail("Not yet implemented");
+		context.close();
 	}
 
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented");
+		Groupe g = new Groupe("compta");
+		try {
+			service.add(g);
+			assertNotNull(g.getIdGroupe());
+		} catch (Exception e) {
+			LOGGER.warning(e.getMessage());
+		}
 	}
 
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		Groupe g = service.get(1L);
+		assertTrue(g!=null);
 	}
 
 	@Test
 	public void testRemove() {
-		fail("Not yet implemented");
+		List<Groupe> groupes = service.getAll();
+		service.remove(1L);
+		List<Groupe> groupes1 = service.getAll();
+		assertTrue(groupes.size()-1 ==groupes1.size());
 	}
 
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
+		Groupe g = service.get(1L);
+		g.setNom("market");
+		service.update(g);
+		Groupe g1 = service.get(1L);
+		Assert.assertThat("market", IsEqual.equalTo(g1.getNom()));
 	}
 
 	@Test
 	public void testGetAll() {
-		fail("Not yet implemented");
+		List<Groupe> groupes = service.getAll();
+		assertTrue(groupes.size()>0);
 	}
 
 	@Test
 	public void testGetGroupeByMc() {
-		fail("Not yet implemented");
+		List<Groupe> groupes = service.getGroupeByMc("m");
+		for(Groupe g:groupes){
+			if(g.getNom().equals("m")){
+				assert(true);
+			}
+		}
 	}
-
 }

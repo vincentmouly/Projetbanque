@@ -11,6 +11,7 @@ import org.hamcrest.core.IsEqual;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,10 +21,18 @@ import com.adaming.myapp.service.IServiceBanque;
 
 public class BanqueServiceTestU {
 	
+	//=========================
+	// Attributes
+	//=========================
+	
 	private final Logger LOGGER = Logger.getLogger("BanqueServiceTestU");
 	private static ClassPathXmlApplicationContext context;
 	private static IServiceBanque service;
 
+	//=========================
+	// Methods
+	//=========================
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		context = new ClassPathXmlApplicationContext("app.xml");
@@ -75,6 +84,7 @@ public class BanqueServiceTestU {
 	}
 
 	@Test
+	@Ignore
 	public void testGetClients() {
 		Client c = new Client("Goutin", "florian", new Date());
 		Banque b = service.get(1L);
@@ -85,16 +95,19 @@ public class BanqueServiceTestU {
 	}
 
 	@Test
+	@Ignore
 	public void testGetGroupes() {
 		fail("Not yet implemented");
 	}
 
 	@Test
+	@Ignore
 	public void testGetComptes() {
 		fail("Not yet implemented");
 	}
 
 	@Test
+	@Ignore
 	public void testGetEmployes() {
 		fail("Not yet implemented");
 	}

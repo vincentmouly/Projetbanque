@@ -1,27 +1,31 @@
 package com.adaming.myapp.service.test;
 
 import static org.junit.Assert.*;
-
 import java.util.List;
 import java.util.logging.Logger;
-
 import org.hamcrest.core.IsEqual;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Employe;
 import com.adaming.myapp.service.IServiceEmploye;
 
 
 public class EmployeServiceTestU {
 	
+	//=========================
+	// Attributes
+	//=========================
+	
 	private final Logger LOGGER = Logger.getLogger("BanqueServiceTestU");
 	private static ClassPathXmlApplicationContext context;
 	private static IServiceEmploye service;
+	
+	//=========================
+	// Methods
+	//=========================
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -83,5 +87,4 @@ public class EmployeServiceTestU {
 			}
 		}
 	}
-
 }
