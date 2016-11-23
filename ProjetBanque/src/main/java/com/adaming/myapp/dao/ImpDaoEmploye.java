@@ -3,10 +3,6 @@ package com.adaming.myapp.dao;
 import java.util.List;
 import javax.persistence.Query;
 
-
-import com.adaming.myapp.entities.Client;
-
-
 import com.adaming.myapp.entities.Employe;
 
 public class ImpDaoEmploye extends AbstractJpa<Employe> implements IEmployeDao{

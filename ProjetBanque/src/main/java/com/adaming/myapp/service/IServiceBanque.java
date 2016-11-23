@@ -22,5 +22,4 @@ public interface IServiceBanque extends IGeneriqueService<Banque> {
 	List<Compte> getComptes(Banque b);
 	
 	List<Employe> getEmployes(Banque b);
-
 }

@@ -4,7 +4,6 @@ import java.util.List;
 import javax.persistence.Query;
 import com.adaming.myapp.entities.Groupe;
 
-import com.adaming.myapp.entities.Groupe;
 
 public class ImpDaoGroupe extends AbstractJpa<Groupe> implements IGroupeDao{
 

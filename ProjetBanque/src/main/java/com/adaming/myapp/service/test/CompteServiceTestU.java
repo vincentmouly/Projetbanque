@@ -1,27 +1,22 @@
 package com.adaming.myapp.service.test;
 
 import static org.junit.Assert.*;
-
 import java.util.Date;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.adaming.myapp.entities.Compte;
 import com.adaming.myapp.entities.CompteCourant;
 import com.adaming.myapp.service.ICompteService;
-import com.adaming.myapp.service.ImpServiceCompte;
+
 
 public class CompteServiceTestU {
 
 	private final Logger LOGGER = Logger.getLogger("CompteServiceTestU");
-	
 	private static ClassPathXmlApplicationContext context;
-	
 	private static ICompteService service;
 	
 	@BeforeClass
@@ -32,15 +27,19 @@ public class CompteServiceTestU {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		
 		context.close();
 	}
 
 	@Test
 	public void testAdd() {
 		Compte c = new CompteCourant(100, new Date(), 300);
-		service.add(c);
-		assertNotNull(c.getIdCompte());
+		try {
+			service.add(c);
+			assertNotNull(c.getIdCompte());
+			
+		} catch (Exception e) {
+			LOGGER.warn(e.getMessage());
+		}
 	}
 
 	@Test

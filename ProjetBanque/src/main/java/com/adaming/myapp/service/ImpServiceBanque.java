@@ -23,7 +23,7 @@ public class ImpServiceBanque implements IServiceBanque {
 	
 	private IBanqueDao dao;
 	@SuppressWarnings("unused")
-	private final Logger LOGGER = Logger.getLogger("ImpServiceGroupe");
+	private final Logger LOGGER = Logger.getLogger("ImpServiceBanque");
 	
 	//=========================
 	// Setter

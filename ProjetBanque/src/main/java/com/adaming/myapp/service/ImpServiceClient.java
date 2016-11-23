@@ -1,45 +1,68 @@
+/*
+ * Version: 1.0.0
+ * Date: 22-11-2016
+ * Author: Florian Goutin / Vincent Mouly / Loic Laugerette
+ */
 package com.adaming.myapp.service;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
-import com.adaming.myapp.dao.AbstractJpa;
+import java.util.logging.Logger;
+import com.adaming.myapp.dao.IClientDao;
 import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Client;
 import com.adaming.myapp.entities.Compte;
 
-public class ImpServiceClient extends AbstractJpa<Client> implements IClientService{
-	EntityManager em;
+public class ImpServiceClient implements IClientService{
+	
+	//=========================
+	// Attributes
+	//=========================
+	
+	private IClientDao dao;
+	@SuppressWarnings("unused")
+	private final Logger LOGGER = Logger.getLogger("ImpServiceClient");
+	
+	//=========================
+	// Setter
+	//=========================
+	
+	public void setDao(IClientDao dao) {
+		this.dao = dao;
+	}
+	
+	//=========================
+	// Methods
+	//=========================
+	
+	
 	@Override
 	public Client add(Client entity) {
 		// TODO Auto-generated method stub
-		return addAbstractJpa(entity);
+		return dao.add(entity);
 	}
 
 	@Override
 	public Client get(long id) {
 		// TODO Auto-generated method stub
-		return getAbstractJpa(id);
+		return dao.get(id);
 	}
 
 	@Override
 	public Client remove(long id) {
 		// TODO Auto-generated method stub
-		return removeAbstractJpa(id);
+		return dao.remove(id);
 	}
 
 	@Override
 	public Client update(Client entity) {
 		// TODO Auto-generated method stub
-		return updateAbstractJpa(entity);
+		return dao.update(entity);
 	}
 
 	@Override
 	public List<Client> getAll() {
 		// TODO Auto-generated method stub
-		return getAllAbstractJpa();
+		return dao.getAll();
 	}
 
 	@Override
@@ -49,11 +72,9 @@ public class ImpServiceClient extends AbstractJpa<Client> implements IClientServ
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<Client> getClientByMc(String mc) {
-		Query query = em.createQuery("from Client c where c.nom like :x");
-		query.setParameter("x","%"+mc+"%");
-		return query.getResultList();
+		// TODO Auto-generated method stub
+		return dao.getClientByMc(mc);
 	}
 
 	@Override

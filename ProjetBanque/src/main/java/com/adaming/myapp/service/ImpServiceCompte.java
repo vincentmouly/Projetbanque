@@ -1,40 +1,65 @@
+/*
+ * Version: 1.0.0
+ * Date: 22-11-2016
+ * Author: Florian Goutin / Vincent Mouly / Loic Laugerette
+ */
 package com.adaming.myapp.service;
 
 import java.util.List;
-
-import com.adaming.myapp.dao.AbstractJpa;
+import java.util.logging.Logger;
+import com.adaming.myapp.dao.ICompteDao;
 import com.adaming.myapp.entities.*;
 
-public class ImpServiceCompte extends AbstractJpa<Compte> implements ICompteService{
-
+public class ImpServiceCompte implements ICompteService{
+	
+	//=========================
+	// Attributes
+	//=========================
+		
+		private ICompteDao dao;
+		@SuppressWarnings("unused")
+		private final Logger LOGGER = Logger.getLogger("ImpServiceCompte");
+		
+	//=========================
+	// Setter
+	//=========================
+	
+		public void setDao(ICompteDao dao) {
+			this.dao = dao;
+		}
+		
+	//=========================
+	// Methods
+	//=========================
+		
 	@Override
 	public Compte add(Compte entity) {
 		// TODO Auto-generated method stub
-		return addAbstractJpa(entity);
+		return dao.add(entity);
 	}
 
 	@Override
 	public Compte get(long id) {
 		// TODO Auto-generated method stub
-		return getAbstractJpa(id);
+		return dao.get(id);
 	}
 
 	@Override
 	public Compte remove(long id) {
 		// TODO Auto-generated method stub
-		return remove(id);
+		return dao.remove(id);
 	}
 
 	@Override
 	public Compte update(Compte entity) {
 		// TODO Auto-generated method stub
-		return updateAbstractJpa(entity);
+		return dao.update(entity);
 	}
 
 	@Override
 	public List<Compte> getAll() {
 		// TODO Auto-generated method stub
-		return getAllAbstractJpa();
+		return dao.getAll();
 	}
 
 	@Override
@@ -60,5 +85,4 @@ public class ImpServiceCompte extends AbstractJpa<Compte> implements ICompteServ
 		// TODO Auto-generated method stub
 		return c.getBanque();
 	}
-
 }

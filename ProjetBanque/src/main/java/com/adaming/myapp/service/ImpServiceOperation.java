@@ -1,40 +1,67 @@
+/*
+ * Version: 1.0.0
+ * Date: 22-11-2016
+ * Author: Florian Goutin / Vincent Mouly / Loic Laugerette
+ */
+
 package com.adaming.myapp.service;
 
 import java.util.List;
-
-import com.adaming.myapp.dao.AbstractJpa;
+import java.util.logging.Logger;
+import com.adaming.myapp.dao.IOperationDao;
 import com.adaming.myapp.entities.*;
 
-public class ImpServiceOperations extends AbstractJpa<Operations> implements IOperationService{
+public class ImpServiceOperation  implements IOperationService{
 
+	//=========================
+	// Attributes
+	//=========================
+		
+		private IOperationDao dao;
+		@SuppressWarnings("unused")
+		private final Logger LOGGER = Logger.getLogger("ImpServiceOperation");
+		
+	//=========================
+	// Setter
+	//=========================
+		
+		public void setDao(IOperationDao dao) {
+			this.dao = dao;
+		}
+
+	//=========================
+	// Methods
+	//=========================
+		
 	@Override
 	public Operations add(Operations entity) {
 		// TODO Auto-generated method stub
-		return addAbstractJpa(entity);
+		return dao.add(entity);
 	}
 
+	
 	@Override
 	public Operations get(long id) {
 		// TODO Auto-generated method stub
-		return getAbstractJpa(id);
+		return dao.get(id);
 	}
 
 	@Override
 	public Operations remove(long id) {
 		// TODO Auto-generated method stub
-		return removeAbstractJpa(id);
+		return dao.remove(id);
 	}
 
 	@Override
 	public Operations update(Operations entity) {
 		// TODO Auto-generated method stub
-		return updateAbstractJpa(entity);
+		return dao.update(entity);
 	}
 
 	@Override
 	public List<Operations> getAll() {
 		// TODO Auto-generated method stub
-		return getAllAbstractJpa();
+		return dao.getAll();
 	}
 
 	@Override
@@ -48,5 +75,4 @@ public class ImpServiceOperations extends AbstractJpa<Operations> implements IOp
 		// TODO Auto-generated method stub
 		return o.getEmploye();
 	}
-
 }

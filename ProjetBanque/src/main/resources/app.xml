@@ -8,10 +8,36 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
 	<!-- injcetion de dépendance -->
-     <bean id="clientDaoImpl" class="com.adaming.myapp.dao.ClientDaoImpl"></bean>
-     <bean id="clientServiceImpl" class="com.adaming.myapp.service.ClientServiceImpl">
-         <property name="dao" ref="clientDaoImpl"></property>
+     <bean id="ImpDaoCompte" class="com.adaming.myapp.dao.ImpDaoCompte"></bean>
+     <bean id="ImpServiceCompte" class="com.adaming.myapp.service.ImpServiceCompte">
+         <property name="dao" ref="ImpDaoCompte"></property>
      </bean>
+     
+     <bean id="ImpDaoBanque" class="com.adaming.myapp.dao.ImpDaoBanque"></bean>
+     <bean id="ImpServiceBanque" class="com.adaming.myapp.service.ImpServiceBanque">
+         <property name="dao" ref="ImpDaoBanque"></property>
+     </bean>
+     
+     <bean id="ImpDaoClient" class="com.adaming.myapp.dao.ImpDaoClient"></bean>
+     <bean id="ImpServiceClient" class="com.adaming.myapp.service.ImpServiceClient">
+         <property name="dao" ref="ImpDaoClient"></property>
+     </bean>  
+      
+     <bean id="ImpDaoGroupe" class="com.adaming.myapp.dao.ImpDaoGroupe"></bean>
+     <bean id="ImpServiceGroupe" class="com.adaming.myapp.service.ImpServiceGroupe">
+         <property name="dao" ref="ImpDaoGroupe"></property>
+     </bean>   
+     
+     <bean id="ImpDaoEmploye" class="com.adaming.myapp.dao.ImpDaoEmploye"></bean>
+     <bean id="ImpServiceEmploye" class="com.adaming.myapp.service.ImpServiceEmploye">
+         <property name="dao" ref="ImpDaoEmploye"></property>
+     </bean> 
+     
+     <bean id="ImpDaoOperation" class="com.adaming.myapp.dao.ImpDaoOperation"></bean>
+     <bean id="ImpServiceOperation" class="com.adaming.myapp.service.ImpServiceOperation">
+         <property name="dao" ref="ImpDaoOperation"></property>
+     </bean> 
+
 
 	<!-- configuration jpa/spring -->
 
