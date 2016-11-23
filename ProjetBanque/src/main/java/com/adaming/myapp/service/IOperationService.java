@@ -16,4 +16,10 @@ public interface IOperationService extends IGeneriqueService<Operations>{
 	Employe getEmploye(Operations o);
 	
 	Operations Versement (Long idCompte, double montant, Long idEmploye);
+	
+	Operations Retrait (Long idCompte, double montant, Long idEmploye) throws Exception;
+	
+	Operations Virement (Long idCompte, Long idCompte2, double montant, Long idEmploye) throws Exception;
+	
+	Compte GetCompte(final Long idCompte);
 }

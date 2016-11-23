@@ -10,6 +10,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.adaming.myapp.dao.ICompteDao;
 import com.adaming.myapp.dao.IOperationDao;
 import com.adaming.myapp.entities.*;
 
@@ -81,10 +84,43 @@ public class ImpServiceOperation  implements IOperationService{
 	@Override
 	public Operations Versement(Long idCompte, double montant, Long idEmploye) {
 		
-		Operations op = new Versement(new Date(), montant);
+		Compte c = dao.GetCompte(idCompte);
+		Operations op = new Versement(new Date(), montant);		
+		return dao.addOperationSimple(op, idCompte, idEmploye);
+	}
 
+
+
+	@Override
+	public Operations Retrait(Long idCompte, double montant, Long idEmploye) throws Exception {
 		
+		Compte c = dao.GetCompte(idCompte);
 		
-		return null;
+		if (c.getSolde() < montant) {
+			throw new Exception("Retrait trop important");
+		}
+		
+		Operations op = new Retrait(new Date(), montant);		
+		return dao.addOperationSimple(op, idCompte, idEmploye);
+	}
+	
+
+	
+	
+	@Override
+	public Compte GetCompte(Long idCompte) {
+		
+		return dao.GetCompte(idCompte);
+	}
+
+	@Override
+	public Operations Virement(Long idCompte, Long idCompte2,  double montant, Long idEmploye) throws Exception {
+
+		Retrait(idCompte, montant, idEmploye);
+		
+		Operations op = Versement(idCompte2, montant, idEmploye);
+		
+		return op;
+
 	}
 }

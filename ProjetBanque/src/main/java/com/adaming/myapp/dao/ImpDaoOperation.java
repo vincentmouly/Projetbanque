@@ -41,9 +41,28 @@ public class ImpDaoOperation extends AbstractJpa<Operations> implements IOperati
 	
 
 	@Override
-	public Operations addOperationSimple(Operations op, Long idCompte) {
-		// TODO Auto-generated method stub
+	public Operations addOperationSimple(Operations op, Long idCompte, Long idEmploye) {
+
+		Compte c = em. find(Compte.class, idCompte);
+		Employe e = em.find(Employe.class, idEmploye);
+		
+		op.getComptes().add(c);
+		op.setEmploye(e);
+		
+		c.setSolde(c.getSolde() + op.getMontant());
+		c.getOperations().add(op);
+		
+		e.getOperations().add(op);
+		
+		em.persist(op);
+
 		return null;
+	}
+
+	@Override
+	public Compte GetCompte(Long idCompte) {
+		Compte c = em.find(Compte.class, idCompte);
+		return c ;
 	}
 
 	
