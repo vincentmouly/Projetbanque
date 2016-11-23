@@ -12,5 +12,7 @@ import com.adaming.myapp.entities.Groupe;
 public interface IServiceGroupe extends IGeneriqueService<Groupe>{
 	
 	List<Groupe> getGroupeByMc(String mc);
+	
+	Groupe addGroupe(String nom, Long idBanque);
 
 }

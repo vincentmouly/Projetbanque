@@ -34,6 +34,7 @@ public class Client implements Serializable{
 	private String Nom;
 	private String Prenom;
 	private Date date_naisssance;
+	private String adresse;
 	
 	//=========================
 	// Associations
@@ -53,11 +54,14 @@ public class Client implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Client(String nom, String prenom, Date date_naisssance) {
+	
+	public Client(String nom, String prenom, Date date_naisssance,
+			String adresse) {
 		super();
 		Nom = nom;
 		Prenom = prenom;
 		this.date_naisssance = date_naisssance;
+		this.adresse = adresse;
 	}
 	
 	//=========================
@@ -101,14 +105,23 @@ public class Client implements Serializable{
 		this.comptes = comptes;
 	}
 	
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
 	//=========================
 	// Getter / Setter
 	//=========================
-	
+		
 	@Override
 	public String toString() {
 		return "Client [idClient=" + idClient + ", Nom=" + Nom + ", Prenom="
 				+ Prenom + ", date_naisssance=" + date_naisssance
-				+ ", banques=" + banques + ", comptes=" + comptes + "]";
-	}	
+				+ ", adresse=" + adresse + ", banques=" + banques
+				+ ", comptes=" + comptes + "]";
+	}
 }

@@ -1,7 +1,10 @@
 package com.adaming.myapp.dao;
 
 import java.util.List;
+
 import javax.persistence.Query;
+
+import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Groupe;
 
 
@@ -43,6 +46,15 @@ public class ImpDaoGroupe extends AbstractJpa<Groupe> implements IGroupeDao{
 		Query query = em.createQuery("from Groupe g where g.nom like :x");
 		query.setParameter("x","%"+mc+"%");
 		return query.getResultList();
+	}
+
+	@Override
+	public Groupe addGroupe(Groupe g, Long idBanque) {
+		Banque b = em.find(Banque.class, idBanque);
+		b.getGroupes().add(g);
+		em.merge(b);
+		em.persist(g);
+		return g;
 	}
 
 }

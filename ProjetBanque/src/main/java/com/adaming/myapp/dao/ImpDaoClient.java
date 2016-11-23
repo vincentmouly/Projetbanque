@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Client;
+import com.adaming.myapp.entities.Compte;
 
 public class ImpDaoClient extends AbstractJpa<Client> implements IClientDao{
 
@@ -44,5 +46,25 @@ public class ImpDaoClient extends AbstractJpa<Client> implements IClientDao{
 		Query query = em.createQuery("from Client c where c.nom like :x");
 		query.setParameter("x","%"+mc+"%");
 		return query.getResultList();
+	}
+
+	@Override
+	public List<Compte> getComptes(Client c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Banque> getBanque(Client c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Client addClient(Client c, Long IdBanque) {
+		Banque b = em.find(Banque.class, IdBanque);
+		c.getBanques().add(b);
+		em.persist(c);
+		return c;
 	}
 }

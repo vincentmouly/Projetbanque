@@ -14,9 +14,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
+
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Groupe implements Serializable {
@@ -36,10 +36,6 @@ public class Groupe implements Serializable {
 	//=========================
 	// Associations
 	//=========================
-	
-	@ManyToOne
-	@JoinTable(name="TB_GROUPE_BANQUE")
-	private Banque banque;
 	
 	@ManyToMany(mappedBy="groupes")
 	private List<Employe> employes = new ArrayList<Employe>();
@@ -73,12 +69,7 @@ public class Groupe implements Serializable {
 	public void setNom(String nom) {
 		Nom = nom;
 	}
-	public Banque getBanque() {
-		return banque;
-	}
-	public void setBanque(Banque banque) {
-		this.banque = banque;
-	}
+	
 	public List<Employe> getEmployes() {
 		return employes;
 	}
@@ -92,7 +83,6 @@ public class Groupe implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Groupe [idGroupe=" + idGroupe + ", Nom=" + Nom + ", banque="
-				+ banque + ", employes=" + employes + "]";
+		return "Groupe [idGroupe=" + idGroupe + ", Nom=" + Nom + ", employes=" + employes + "]";
 	}
 }

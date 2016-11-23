@@ -1,8 +1,10 @@
 package com.adaming.myapp.dao;
 
 import java.util.List;
+
 import javax.persistence.Query;
 
+import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Employe;
 
 public class ImpDaoEmploye extends AbstractJpa<Employe> implements IEmployeDao{
@@ -43,6 +45,14 @@ public class ImpDaoEmploye extends AbstractJpa<Employe> implements IEmployeDao{
 		Query query = em.createQuery("from Employe e where e.nom like :x");
 		query.setParameter("x","%"+mc+"%");
 		return query.getResultList();
+	}
+
+	@Override
+	public Employe addEmploye(Employe e, Long idBanque) {
+		Banque b = em.find(Banque.class, idBanque);
+		e.setBanque(b);
+		em.persist(e);
+		return e;
 	}
 
 }

@@ -5,6 +5,7 @@
  */
 package com.adaming.myapp.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.adaming.myapp.entities.*;
@@ -16,4 +17,6 @@ public interface IClientService extends IGeneriqueService<Client>{
 	List<Client> getClientByMc(String mc);
 	
 	List<Banque> getBanque(Client c);
+	
+	Client addClient(String nom, String prenom, Date dateDeNaissance, String adresse, Long IdBanque);
 }

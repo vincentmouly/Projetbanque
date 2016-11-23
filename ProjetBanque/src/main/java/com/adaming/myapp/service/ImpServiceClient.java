@@ -5,8 +5,10 @@
  */
 package com.adaming.myapp.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
+
 import com.adaming.myapp.dao.IClientDao;
 import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Client;
@@ -82,4 +84,12 @@ public class ImpServiceClient implements IClientService{
 		// TODO Auto-generated method stub
 		return c.getBanques();
 	}
+	@Override
+	public Client addClient(String nom, String prenom, Date dateDeNaissance,
+			String adresse, Long IdBanque) {
+		// TODO Auto-generated method stub
+		return dao.addClient(new Client(nom, prenom, dateDeNaissance, adresse), IdBanque);
+	}
+	
+	
 }

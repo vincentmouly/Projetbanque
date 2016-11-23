@@ -75,4 +75,10 @@ public class ImpServiceGroupe implements IServiceGroupe {
 		// TODO Auto-generated method stub
 		return dao.getGroupeByMc(mc);
 	}
+
+	@Override
+	public Groupe addGroupe(String nom, Long idBanque) {
+		// TODO Auto-generated method stub
+		return dao.addGroupe(new Groupe(nom), idBanque);
+	}
 }

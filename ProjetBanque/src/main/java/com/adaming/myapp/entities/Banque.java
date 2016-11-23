@@ -9,7 +9,6 @@ package com.adaming.myapp.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -49,6 +48,10 @@ public class Banque implements Serializable{
 	
 	@OneToMany(mappedBy="banque")
 	private List<Employe> employes = new ArrayList<Employe>();
+	
+	@OneToMany
+	@JoinTable(name="TB_GROUPE_BANQUE")
+	private List<Groupe> groupes = new ArrayList<Groupe>();
 	
 	//=========================
 	// Constructor
@@ -110,11 +113,21 @@ public class Banque implements Serializable{
 	}
 	public void setEmployes(List<Employe> employes) {
 		this.employes = employes;
+		
+		
+	}
+	
+	public List<Groupe> getGroupes() {
+		return groupes;
+	}
+	public void setGroupes(List<Groupe> groupes) {
+		this.groupes = groupes;
 	}
 	
 	//=========================
 	// Methodes
 	//=========================
+	
 	
 	@Override
 	public String toString() {

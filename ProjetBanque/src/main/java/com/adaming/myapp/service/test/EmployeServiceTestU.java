@@ -60,7 +60,7 @@ public class EmployeServiceTestU {
 		List<Employe> employes = service.getAll();
 		service.remove(1L);
 		List<Employe> employes1 = service.getAll();
-		assertTrue(employes.size()-1 ==employes.size());
+		assertTrue(employes.size()-1 ==employes1.size());
 	}
 
 	@Test

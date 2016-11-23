@@ -7,4 +7,6 @@ import com.adaming.myapp.entities.Groupe;
 public interface IGroupeDao extends IGenDao<Groupe>{
 
 	List<Groupe> getGroupeByMc(String mc);
+	
+	Groupe addGroupe(Groupe g, Long idBanque);
 }

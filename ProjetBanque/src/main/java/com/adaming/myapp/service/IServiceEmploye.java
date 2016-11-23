@@ -12,5 +12,7 @@ import com.adaming.myapp.entities.Employe;
 public interface IServiceEmploye extends IGeneriqueService<Employe> {
 	
 	List<Employe> getEmployeByMc(String mc);
+	
+	Employe addEmploye(String nom, Long idBanque);
 
 }
