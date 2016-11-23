@@ -1,8 +1,6 @@
 package com.adaming.myapp.dao;
 
 import java.util.List;
-
-import com.adaming.myapp.entities.Client;
 import com.adaming.myapp.entities.Compte;
 
 public class ImpDaoCompte extends AbstractJpa<Compte> implements ICompteDao{
