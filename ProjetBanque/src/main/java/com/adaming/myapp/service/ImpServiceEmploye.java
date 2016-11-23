@@ -81,4 +81,10 @@ public class ImpServiceEmploye implements IServiceEmploye{
 		// TODO Auto-generated method stub
 		return dao.addEmploye(new Employe(nom), idBanque);
 	}
+
+	@Override
+	public Employe addEmployeToGroupe(Long Ide, Long Idgroupe) {
+		// TODO Auto-generated method stub
+		return dao.addEmployeToGroupe(Ide, Idgroupe);
+	}
 }

@@ -87,9 +87,7 @@ public class ImpServiceClient implements IClientService{
 	@Override
 	public Client addClient(String nom, String prenom, Date dateDeNaissance,
 			String adresse, Long IdBanque) {
-		// TODO Auto-generated method stub
+
 		return dao.addClient(new Client(nom, prenom, dateDeNaissance, adresse), IdBanque);
 	}
-	
-	
 }

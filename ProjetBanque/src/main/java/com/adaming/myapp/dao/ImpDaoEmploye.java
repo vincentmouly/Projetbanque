@@ -6,6 +6,7 @@ import javax.persistence.Query;
 
 import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Employe;
+import com.adaming.myapp.entities.Groupe;
 
 public class ImpDaoEmploye extends AbstractJpa<Employe> implements IEmployeDao{
 
@@ -52,6 +53,15 @@ public class ImpDaoEmploye extends AbstractJpa<Employe> implements IEmployeDao{
 		Banque b = em.find(Banque.class, idBanque);
 		e.setBanque(b);
 		em.persist(e);
+		return e;
+	}
+
+	@Override
+	public Employe addEmployeToGroupe(Long Ide, Long Idgroupe) {
+		Employe e = em.find(Employe.class, Ide);
+		Groupe g = em.find(Groupe.class, Idgroupe);
+		e.getGroupes().add(g);
+		g.getEmployes().add(e);
 		return e;
 	}
 

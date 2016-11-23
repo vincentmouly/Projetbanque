@@ -18,4 +18,9 @@ public interface ICompteService extends IGeneriqueService<Compte>{
 	List<Operations> getOperations(Compte c);
 	
 	Banque getBanque(Compte c);
+	
+	Compte addCompteCourant(Long Idclient, Long idbanque);
+	
+	Compte addCompteEpargne(Long Idclient, Long idbanque);
+	
 }

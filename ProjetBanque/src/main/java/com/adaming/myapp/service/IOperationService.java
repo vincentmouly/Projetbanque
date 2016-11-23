@@ -14,4 +14,6 @@ public interface IOperationService extends IGeneriqueService<Operations>{
 	List<Compte> getComptes(Operations o);
 	
 	Employe getEmploye(Operations o);
+	
+	Operations Versement (Long idCompte, double montant, Long idEmploye);
 }

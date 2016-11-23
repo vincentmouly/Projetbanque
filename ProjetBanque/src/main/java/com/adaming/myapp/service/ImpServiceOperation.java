@@ -6,8 +6,10 @@
 
 package com.adaming.myapp.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
+
 import com.adaming.myapp.dao.IOperationDao;
 import com.adaming.myapp.entities.*;
 
@@ -74,5 +76,15 @@ public class ImpServiceOperation  implements IOperationService{
 	public Employe getEmploye(Operations o) {
 		// TODO Auto-generated method stub
 		return o.getEmploye();
+	}
+
+	@Override
+	public Operations Versement(Long idCompte, double montant, Long idEmploye) {
+		
+		Operations op = new Versement(new Date(), montant);
+
+		
+		
+		return null;
 	}
 }

@@ -14,5 +14,8 @@ public interface IServiceEmploye extends IGeneriqueService<Employe> {
 	List<Employe> getEmployeByMc(String mc);
 	
 	Employe addEmploye(String nom, Long idBanque);
+	
+	Employe addEmployeToGroupe(Long Ide, Long Idgroupe);
+
 
 }

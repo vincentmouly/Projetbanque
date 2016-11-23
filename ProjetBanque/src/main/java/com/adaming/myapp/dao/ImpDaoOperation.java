@@ -2,6 +2,8 @@ package com.adaming.myapp.dao;
 
 import java.util.List;
 
+import com.adaming.myapp.entities.Compte;
+import com.adaming.myapp.entities.Employe;
 import com.adaming.myapp.entities.Operations;
 
 public class ImpDaoOperation extends AbstractJpa<Operations> implements IOperationDao{
@@ -35,4 +37,14 @@ public class ImpDaoOperation extends AbstractJpa<Operations> implements IOperati
 		// TODO Auto-generated method stub
 		return getAllAbstractJpa();
 	}
+
+	
+
+	@Override
+	public Operations addOperationSimple(Operations op, Long idCompte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

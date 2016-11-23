@@ -5,8 +5,10 @@
  */
 package com.adaming.myapp.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
+
 import com.adaming.myapp.dao.ICompteDao;
 import com.adaming.myapp.entities.*;
 
@@ -84,5 +86,17 @@ public class ImpServiceCompte implements ICompteService{
 	public Banque getBanque(Compte c) {
 		// TODO Auto-generated method stub
 		return c.getBanque();
+	}
+
+	@Override
+	public Compte addCompteCourant(Long Idclient, Long idbanque) {
+		// TODO Auto-generated method stub
+		return dao.addCompte(new CompteCourant(100, new Date(), -100), Idclient, idbanque);
+	}
+
+	@Override
+	public Compte addCompteEpargne(Long Idclient, Long idbanque) {
+		// TODO Auto-generated method stub
+		return dao.addCompte(new CompteEpargne(100, new Date(), -100), Idclient, idbanque);
 	}
 }
