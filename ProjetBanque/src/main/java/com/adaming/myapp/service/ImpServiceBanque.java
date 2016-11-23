@@ -1,0 +1,99 @@
+/*
+ * Version: 1.0.0
+ * Date: 22-11-2016
+ * Author: Florian Goutin / Vincent Mouly / Loic Laugerette
+ */
+package com.adaming.myapp.service;
+
+import java.util.List;
+import java.util.logging.Logger;
+import com.adaming.myapp.dao.IBanqueDao;
+import com.adaming.myapp.entities.Banque;
+import com.adaming.myapp.entities.Client;
+import com.adaming.myapp.entities.Compte;
+import com.adaming.myapp.entities.Employe;
+import com.adaming.myapp.entities.Groupe;
+import com.adaming.myapp.exception.ExceptionBanque;
+
+public class ImpServiceBanque implements IServiceBanque {
+	
+	//=========================
+	// Attributes
+	//=========================
+	
+	private IBanqueDao dao;
+	@SuppressWarnings("unused")
+	private final Logger LOGGER = Logger.getLogger("ImpServiceGroupe");
+	
+	//=========================
+	// Setter
+	//=========================
+	
+	public void setDao(IBanqueDao dao) {
+		this.dao = dao;
+	}
+	
+	//=========================
+	// Methods
+	//=========================
+	
+	@Override
+	public Banque add(Banque b)throws Exception {
+		List<Banque> banques = getAll();
+		for (Banque b1:banques){
+			if(b.getNomAgence()==b1.getNomAgence()){
+				throw new ExceptionBanque("la banque " + b.getNomAgence() + "existe déja");
+			}
+		}
+		dao.add(b);
+		return b;
+	}
+
+	@Override
+	public Banque get(long id) {
+		// TODO Auto-generated method stub
+		return dao.get(id);
+	}
+
+	@Override
+	public Banque remove(long id) {
+		// TODO Auto-generated method stub
+		return dao.remove(id);
+	}
+
+	@Override
+	public Banque update(Banque banque) {
+		// TODO Auto-generated method stub
+		return dao.update(banque);
+	}
+
+	@Override
+	public List<Banque> getAll() {
+		// TODO Auto-generated method stub
+		return dao.getAll();
+	}
+
+	@Override
+	public List<Client> getClients(Banque b) {
+		// TODO Auto-generated method stub
+		return dao.getClients(b);
+	}
+
+	@Override
+	public List<Groupe> getGroupes(Banque b) {
+		// TODO Auto-generated method stub
+		return dao.getGroupes(b);
+	}
+
+	@Override
+	public List<Compte> getComptes(Banque b) {
+		// TODO Auto-generated method stub
+		return dao.getComptes(b);
+	}
+
+	@Override
+	public List<Employe> getEmployes(Banque b) {
+		// TODO Auto-generated method stub
+		return dao.getEmployes(b);
+	}
+}

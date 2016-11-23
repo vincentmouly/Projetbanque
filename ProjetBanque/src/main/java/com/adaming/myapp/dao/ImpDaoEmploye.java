@@ -1,10 +1,12 @@
 package com.adaming.myapp.dao;
 
 import java.util.List;
-
 import javax.persistence.Query;
 
+
 import com.adaming.myapp.entities.Client;
+
+
 import com.adaming.myapp.entities.Employe;
 
 public class ImpDaoEmploye extends AbstractJpa<Employe> implements IEmployeDao{
@@ -41,7 +43,7 @@ public class ImpDaoEmploye extends AbstractJpa<Employe> implements IEmployeDao{
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Client> getClientByMc(String mc) {
+	public List<Employe> getEmployeByMc(String mc) {
 		Query query = em.createQuery("from Employe e where e.nom like :x");
 		query.setParameter("x","%"+mc+"%");
 		return query.getResultList();
