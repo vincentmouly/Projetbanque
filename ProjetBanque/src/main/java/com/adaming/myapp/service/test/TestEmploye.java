@@ -29,7 +29,7 @@ public class TestEmploye {
 		
 		List<Employe> employes = serviceEmploye.getAll();
 		int s1 = employes.size();
-		serviceEmploye.remove(1L);
+		serviceEmploye.remove(2L);
 		int s2 = employes.size();
 		assert(s1-s2==1);
 		

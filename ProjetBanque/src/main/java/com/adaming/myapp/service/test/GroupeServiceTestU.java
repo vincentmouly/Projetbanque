@@ -1,14 +1,23 @@
+/*
+ * Version: 1.0.0
+ * Date: 22-11-2016
+ * Author: Florian Goutin / Vincent Mouly / Loic Laugerette
+ */
+
 package com.adaming.myapp.service.test;
 
 import static org.junit.Assert.*;
+
 import java.util.List;
 import java.util.logging.Logger;
+
 import org.hamcrest.core.IsEqual;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.adaming.myapp.entities.Groupe;
 import com.adaming.myapp.service.IServiceGroupe;
 
@@ -17,10 +26,15 @@ public class GroupeServiceTestU {
 	//=========================
 	// Attributes
 	//=========================
-	
-	private final Logger LOGGER = Logger.getLogger("BanqueServiceTestU");
-	private static ClassPathXmlApplicationContext context;
-	private static IServiceGroupe service;
+		
+		private final Logger LOGGER = Logger.getLogger("BanqueServiceTestU");
+		private static ClassPathXmlApplicationContext context;
+		private static IServiceGroupe service;
+
+
+	//=========================
+	// Methods
+	//=========================
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -28,10 +42,6 @@ public class GroupeServiceTestU {
 		service = (IServiceGroupe) context.getBean("ImpServiceGroupe");
 	}
 
-	//=========================
-	// Methods
-	//=========================
-	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		context.close();
@@ -39,13 +49,7 @@ public class GroupeServiceTestU {
 
 	@Test
 	public void testAdd() {
-		Groupe g = new Groupe("compta");
-		try {
-			service.add(g);
-			assertNotNull(g.getIdGroupe());
-		} catch (Exception e) {
-			LOGGER.warning(e.getMessage());
-		}
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -86,4 +90,16 @@ public class GroupeServiceTestU {
 			}
 		}
 	}
+
+	@Test
+	public void testAddGroupe() {
+		Groupe g = new Groupe("developpement");
+		try {
+			service.add(g);
+			assertNotNull(g.getIdGroupe());
+		} catch (Exception e) {
+			LOGGER.warning(e.getMessage());
+		}
+	}
+
 }

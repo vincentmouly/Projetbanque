@@ -1,3 +1,9 @@
+/*
+ * Version: 1.0.0
+ * Date: 22-11-2016
+ * Author: Florian Goutin / Vincent Mouly / Loic Laugerette
+ */
+
 package com.adaming.myapp.service.test;
 
 import static org.junit.Assert.*;
@@ -7,77 +13,84 @@ import org.hamcrest.core.IsEqual;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.service.IServiceBanque;
 
 public class BanqueServiceTestU {
-	
+
 	//=========================
 	// Attributes
 	//=========================
-	
-	private final Logger LOGGER = Logger.getLogger("BanqueServiceTestU");
-	private static ClassPathXmlApplicationContext context;
-	private static IServiceBanque service;
+		
+		private final Logger LOGGER = Logger.getLogger("BanqueServiceTestU");
+		private static ClassPathXmlApplicationContext context;
+		private static IServiceBanque serviceBanque;
 
 	//=========================
 	// Methods
 	//=========================
-	
+		
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		context = new ClassPathXmlApplicationContext("app.xml");
-		service = (IServiceBanque) context.getBean("ImpServiceBanque");
+		serviceBanque = (IServiceBanque) context.getBean("ImpServiceBanque");
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-	context.close();
+		context.close();
 	}
 
 	@Test
+	@Ignore
 	public void testAdd() {
 		Banque b = new Banque("LCL", "24 rue General de Gaulle", "95880");
 		try {
-			service.add(b);
-			assertNotNull(b.getIdBanque());
+			serviceBanque.add(b);
+			assertNotNull(b.getIdBanque());		
 		} catch (Exception e) {
 			LOGGER.warning(e.getMessage());
 		}
 	}
 
 	@Test
+	@Ignore
 	public void testGet() {
-		Banque b = service.get(1L);
+		Banque b = serviceBanque.get(1L);
 		assertTrue(b !=null);
 	}
+
 	@Test
+	@Ignore
 	public void testRemove() {
-		List<Banque> banques = service.getAll();
-		service.remove(1L);
-		List<Banque> banques2 = service.getAll();
-		assertTrue(banques.size()-1 == banques2.size());
+		List<Banque> banques = serviceBanque.getAll();
+		int s1 = banques.size();
+		serviceBanque.remove(1L);
+		int s2 = banques.size();
+		assert(s1-s2==1);
 	}
 
 	@Test
+	@Ignore
 	public void testUpdate() {
-		Banque b1 = service.get(1L);
+		Banque b1 = serviceBanque.get(1L);
 		b1.setNomAgence("La Poste");
-		service.update(b1);
-		Banque b2 = service.get(1L);
-		Assert.assertThat("La Poste", IsEqual.equalTo(b2.getNomAgence()));	
+		serviceBanque.update(b1);
+		Banque b2 = serviceBanque.get(1L);
+		Assert.assertThat("La Poste", IsEqual.equalTo(b2.getNomAgence()));
 	}
 
 	@Test
+	@Ignore
 	public void testGetAll() {
-		List<Banque> banques = service.getAll();
+		List<Banque> banques = serviceBanque.getAll();
 		assertTrue(banques.size()>0);
 	}
 
 	/*@Test
-	@Ignore
 	public void testGetClients() {
 		Client c = new Client("Goutin", "Florian", new Date(), "...");
 		Banque b = service.get(1L);
@@ -87,22 +100,18 @@ public class BanqueServiceTestU {
 	}
 
 	@Test
-	@Ignore
 	public void testGetGroupes() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	@Ignore
 	public void testGetComptes() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	@Ignore
 	public void testGetEmployes() {
 		fail("Not yet implemented");
-	}
-	*/
+	}*/
 
 }
