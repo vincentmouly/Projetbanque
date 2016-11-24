@@ -46,51 +46,7 @@ public class GroupeServiceTestU {
 	public static void tearDownAfterClass() throws Exception {
 		context.close();
 	}
-
-	@Test
-	public void testAdd() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGet() {
-		Groupe g = service.get(1L);
-		assertTrue(g!=null);
-	}
-
-	@Test
-	public void testRemove() {
-		List<Groupe> groupes = service.getAll();
-		service.remove(1L);
-		List<Groupe> groupes1 = service.getAll();
-		assertTrue(groupes.size()-1 ==groupes1.size());
-	}
-
-	@Test
-	public void testUpdate() {
-		Groupe g = service.get(1L);
-		g.setNom("market");
-		service.update(g);
-		Groupe g1 = service.get(1L);
-		Assert.assertThat("market", IsEqual.equalTo(g1.getNom()));
-	}
-
-	@Test
-	public void testGetAll() {
-		List<Groupe> groupes = service.getAll();
-		assertTrue(groupes.size()>0);
-	}
-
-	@Test
-	public void testGetGroupeByMc() {
-		List<Groupe> groupes = service.getGroupeByMc("m");
-		for(Groupe g:groupes){
-			if(g.getNom().equals("m")){
-				assert(true);
-			}
-		}
-	}
-
+	
 	@Test
 	public void testAddGroupe() {
 		Groupe g = new Groupe("developpement");
@@ -102,4 +58,42 @@ public class GroupeServiceTestU {
 		}
 	}
 
+	@Test
+	public void testGet() {
+		Groupe g = service.get(1L);
+		assertTrue(g!=null);
+	}
+	
+	@Test
+	public void testGetAll() {
+		List<Groupe> groupes = service.getAll();
+		assertTrue(groupes.size()>0);
+	}
+	
+	@Test
+	public void testGetGroupeByMc() {
+		List<Groupe> groupes = service.getGroupeByMc("m");
+		for(Groupe g:groupes){
+			if(g.getNom().equals("m")){
+				assert(true);
+			}
+		}
+	}
+	
+	@Test
+	public void testUpdate() {
+		Groupe g = service.get(1L);
+		g.setNom("market");
+		service.update(g);
+		Groupe g1 = service.get(1L);
+		Assert.assertThat("market", IsEqual.equalTo(g1.getNom()));
+	}
+
+	@Test
+	public void testRemove() {
+		List<Groupe> groupes = service.getAll();
+		service.remove(1L);
+		List<Groupe> groupes1 = service.getAll();
+		assertTrue(groupes.size()-1 ==groupes1.size());
+	}
 }

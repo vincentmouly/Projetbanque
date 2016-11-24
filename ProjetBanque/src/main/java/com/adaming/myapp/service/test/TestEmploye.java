@@ -1,12 +1,9 @@
 package com.adaming.myapp.service.test;
 
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.logging.Logger;
-
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.adaming.myapp.entities.Employe;
 import com.adaming.myapp.service.IServiceEmploye;
 

@@ -62,7 +62,24 @@ public class BanqueServiceTestU {
 		Banque b = serviceBanque.get(1L);
 		assertTrue(b !=null);
 	}
-
+	
+	@Test
+	@Ignore
+	public void testGetAll() {
+		List<Banque> banques = serviceBanque.getAll();
+		assertTrue(banques.size()>0);
+	}
+	
+	@Test
+	@Ignore
+	public void testUpdate() {
+		Banque b1 = serviceBanque.get(1L);
+		b1.setNomAgence("La Poste");
+		serviceBanque.update(b1);
+		Banque b2 = serviceBanque.get(1L);
+		Assert.assertThat("La Poste", IsEqual.equalTo(b2.getNomAgence()));
+	}
+	
 	@Test
 	@Ignore
 	public void testRemove() {
@@ -73,30 +90,16 @@ public class BanqueServiceTestU {
 		assert(s1-s2==1);
 	}
 
-	@Test
-	@Ignore
-	public void testUpdate() {
-		Banque b1 = serviceBanque.get(1L);
-		b1.setNomAgence("La Poste");
-		serviceBanque.update(b1);
-		Banque b2 = serviceBanque.get(1L);
-		Assert.assertThat("La Poste", IsEqual.equalTo(b2.getNomAgence()));
-	}
+	
 
-	@Test
-	@Ignore
-	public void testGetAll() {
-		List<Banque> banques = serviceBanque.getAll();
-		assertTrue(banques.size()>0);
-	}
+	
 
 	/*@Test
 	public void testGetClients() {
-		Client c = new Client("Goutin", "Florian", new Date(), "...");
-		Banque b = service.get(1L);
-		List<Client> clients = new ArrayList<Client>();
+		Banque banque = serviceBanque.get(2L);
+		banque.getClients();
 		clients.add(c);
-		List<Client> clients1 = service.getClients(b);	
+		List<Client> clients1 = serviceBanque.getClients(b);	
 	}
 
 	@Test
@@ -112,6 +115,7 @@ public class BanqueServiceTestU {
 	@Test
 	public void testGetEmployes() {
 		fail("Not yet implemented");
-	}*/
+	}
+	*/
 
 }

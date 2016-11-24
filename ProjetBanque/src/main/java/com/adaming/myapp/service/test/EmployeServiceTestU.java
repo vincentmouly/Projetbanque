@@ -17,6 +17,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.adaming.myapp.entities.Employe;
+import com.adaming.myapp.entities.Groupe;
 import com.adaming.myapp.service.IServiceEmploye;
 
 public class EmployeServiceTestU {
@@ -58,19 +59,22 @@ public class EmployeServiceTestU {
 	
 	@Test
 	@Ignore
-	public void testGet() {
-		Employe e = serviceEmploye.get(1L);
-		assertTrue(e!=null);
+	public void testAddEmployeToGroupe() throws Exception {
+		Employe e = serviceEmploye.add(new Employe("Goutin"));
+		e.getIde();
+		Groupe g = new Groupe("Developpement");
+		g.getIdGroupe();
+		serviceEmploye.addEmployeToGroupe(1L, 1L);
+		if(e.getNom().equals(g.getEmployes().getClass().getName())){
+			assert(true);
+		}
 	}
 	
 	@Test
 	@Ignore
-	public void testUpdate() {
-		Employe e = serviceEmploye.get(2L);
-		e.setNom("jose");
-		serviceEmploye.update(e);
-		Employe e1 = serviceEmploye.get(2L);
-		Assert.assertThat("jose", IsEqual.equalTo(e1.getNom()));
+	public void testGet() {
+		Employe e = serviceEmploye.get(1L);
+		assertTrue(e!=null);
 	}
 	
 	@Test
@@ -90,7 +94,17 @@ public class EmployeServiceTestU {
 			}
 		}
 	}
-
+	
+	@Test
+	@Ignore
+	public void testUpdate() {
+		Employe e = serviceEmploye.get(2L);
+		e.setNom("jose");
+		serviceEmploye.update(e);
+		Employe e1 = serviceEmploye.get(2L);
+		Assert.assertThat("jose", IsEqual.equalTo(e1.getNom()));
+	}
+	
 	@Test
 	@Ignore
 	public void testRemove() {
@@ -100,19 +114,4 @@ public class EmployeServiceTestU {
 		int s2 = employes.size();
 		assert(s1-s2==1);
 	}
-
-	
-	/*@Test
-	@Ignore
-	public void testAddEmployeToGroupe() throws Exception {
-		Employe e = serviceEmploye.add(new Employe("Goutin"));
-		e.getIde();
-		Groupe g = new Groupe("Developpement");
-		g.getIdGroupe();
-		serviceEmploye.addEmployeToGroupe(1L, 1L);
-		if(e.getNom().equals(g.getEmployes().getClass().getName())){
-			assert(true);
-		}
-	}
-	*/
 }
