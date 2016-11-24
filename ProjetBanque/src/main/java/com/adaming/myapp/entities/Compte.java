@@ -36,7 +36,7 @@ public abstract class Compte implements Serializable {
 	// Associations
 	//=========================
 	@ManyToOne
-	@JoinColumn(name="IdBanque")
+	@JoinColumn(name="idBanque")
 	private Banque banque;
 	
 	@ManyToOne
