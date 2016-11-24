@@ -5,13 +5,23 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.lang.reflect.ParameterizedType;
+
 
 public class AbstractJpa<T extends Serializable> {
 	
 	@PersistenceContext
 	protected EntityManager em;
 	
+
+	
 	private Class<T> clazz;
+	
+	
+	public AbstractJpa() {
+		this.clazz = (Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	}
+	
 	
 	public T addAbstractJpa(T entity){
 		em.persist(entity);

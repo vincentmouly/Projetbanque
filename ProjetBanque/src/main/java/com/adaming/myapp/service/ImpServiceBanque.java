@@ -7,6 +7,9 @@ package com.adaming.myapp.service;
 
 import java.util.List;
 import java.util.logging.Logger;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import com.adaming.myapp.dao.IBanqueDao;
 import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Client;
@@ -15,6 +18,7 @@ import com.adaming.myapp.entities.Employe;
 import com.adaming.myapp.entities.Groupe;
 import com.adaming.myapp.exception.ExceptionBanque;
 
+@Transactional
 public class ImpServiceBanque implements IServiceBanque {
 	
 	//=========================
@@ -38,7 +42,7 @@ public class ImpServiceBanque implements IServiceBanque {
 	//=========================
 	
 	@Override
-	public Banque add(Banque b)throws Exception {
+	public Banque add(Banque b)throws ExceptionBanque {
 		List<Banque> banques = getAll();
 		for (Banque b1:banques){
 			if(b.getNomAgence()==b1.getNomAgence()){

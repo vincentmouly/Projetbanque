@@ -8,10 +8,13 @@ package com.adaming.myapp.service;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.adaming.myapp.dao.IEmployeDao;
 import com.adaming.myapp.entities.Employe;
 import com.adaming.myapp.exception.ExceptionEmploye;
 
+@Transactional
 public class ImpServiceEmploye implements IServiceEmploye{
 	
 	//=========================
@@ -35,7 +38,7 @@ public class ImpServiceEmploye implements IServiceEmploye{
 	//=========================
 	
 	@Override
-	public Employe add(Employe employe)throws Exception {
+	public Employe add(Employe employe)throws ExceptionEmploye {
 		List<Employe> employes = getAll();
 		for (Employe e:employes){
 			if(employe.getNom()==e.getNom()){

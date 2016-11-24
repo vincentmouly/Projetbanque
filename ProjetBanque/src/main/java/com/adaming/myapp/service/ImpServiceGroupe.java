@@ -8,10 +8,13 @@ package com.adaming.myapp.service;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.adaming.myapp.dao.IGroupeDao;
 import com.adaming.myapp.entities.Groupe;
 import com.adaming.myapp.exception.ExceptionGroupe;
 
+@Transactional
 public class ImpServiceGroupe implements IServiceGroupe {
 	
 	//=========================
@@ -35,7 +38,7 @@ public class ImpServiceGroupe implements IServiceGroupe {
 	//=========================
 	
 	@Override
-	public Groupe add(Groupe groupe)throws Exception {
+	public Groupe add(Groupe groupe)throws ExceptionGroupe {
 		List<Groupe> groupes = getAll();
 		for (Groupe g:groupes){
 			if (groupe.getNom()==g.getNom()){

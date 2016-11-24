@@ -1,6 +1,7 @@
 package com.adaming.myapp.dao;
 
 import java.util.List;
+
 import com.adaming.myapp.entities.*;
 
 public class ImpDaoBanque extends AbstractJpa<Banque> implements IBanqueDao{
@@ -58,5 +59,4 @@ public class ImpDaoBanque extends AbstractJpa<Banque> implements IBanqueDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
