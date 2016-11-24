@@ -20,7 +20,7 @@ import com.adaming.myapp.exception.ExceptionBanque;
 import com.adaming.myapp.exception.ExceptionEmploye;
 import com.adaming.myapp.service.IServiceEmploye;
 
-
+//
 public class EmployeController {
 	
 	//=========================
@@ -49,7 +49,7 @@ public class EmployeController {
 		@Valid EmployeModel em, BindingResult result){
 			if (result.hasErrors()){
 				List<Employe> employes = service.getAll();
-				em.setBanques(employes);
+				em.setEmployes(employes);
 				model.addAllAttributes("emModel", em);
 				return "Employes";
 			}
@@ -57,7 +57,7 @@ public class EmployeController {
 				Employe e = new Employe(em.getNom);
 				service.add(e);
 				List<Employe> e2 = service.getAll();
-				em.setBanques(e2);
+				em.setEmployes(e2);
 				model.addAttribute("emModel",em);
 				return "redirect:/";
 			} catch (ExceptionEmploye e) {
@@ -65,7 +65,7 @@ public class EmployeController {
 				model.addAllAttributes("emModel", em);
 				LOGGER.info(" exception " + em.getExceptionBanque());
 				List<Employe> employes = service.getAll();
-				em.setBanques(employes);
+				em.setEmployes(employes);
 				return "Employes";
 			}
 		}
@@ -73,7 +73,7 @@ public class EmployeController {
 		public String Update (Model model, Employemodel em, Employe e){
 			service.update(e);
 			List<Employe> employes = service.getAll();
-			em.setBanques(employes);
+			em.setEmployes(employes);
 			model.addAttribute("emModel", em);
 			return "Employes";
 		}

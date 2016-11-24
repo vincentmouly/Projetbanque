@@ -1,3 +1,8 @@
+/*
+ * Version: 1.0.0
+ * Date: 22-11-2016
+ * Author: Florian Goutin / Vincent Mouly / Loic Laugerette
+ */
 package com.adaming.myapp.service.test;
 
 import static org.junit.Assert.*;

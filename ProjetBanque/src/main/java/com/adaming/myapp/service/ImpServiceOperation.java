@@ -9,13 +9,11 @@ package com.adaming.myapp.service;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.adaming.myapp.dao.ICompteDao;
+import org.springframework.transaction.annotation.Transactional;
 import com.adaming.myapp.dao.IOperationDao;
 import com.adaming.myapp.entities.*;
 
+@Transactional
 public class ImpServiceOperation  implements IOperationService{
 
 	//=========================
@@ -39,9 +37,15 @@ public class ImpServiceOperation  implements IOperationService{
 	//=========================
 		
 	@Override
-	public Operations add(Operations entity) {
-		// TODO Auto-generated method stub
-		return dao.add(entity);
+	public Operations add(Operations o1) throws Exception{
+		List<Operations> ops = getAll();
+		for(Operations o:ops){
+			if(o1.getDate().equals(o.getDate()) && o1.getMontant() == o.getMontant()){
+				throw new Exception("L'opération du "+o1.getDate()+" d'unmontant de "+o1.getMontant()+" existe déja!");
+			}
+		}
+		dao.add(o1);
+		return o1;
 	}
 
 	
@@ -83,13 +87,10 @@ public class ImpServiceOperation  implements IOperationService{
 
 	@Override
 	public Operations Versement(Long idCompte, double montant, Long idEmploye) {
-		
 		Compte c = dao.GetCompte(idCompte);
 		Operations op = new Versement(new Date(), montant);		
 		return dao.addOperationSimple(op, idCompte, idEmploye);
 	}
-
-
 
 	@Override
 	public Operations Retrait(Long idCompte, double montant, Long idEmploye) throws Exception {
@@ -103,9 +104,6 @@ public class ImpServiceOperation  implements IOperationService{
 		Operations op = new Retrait(new Date(), montant);		
 		return dao.addOperationSimple(op, idCompte, idEmploye);
 	}
-	
-
-	
 	
 	@Override
 	public Compte GetCompte(Long idCompte) {

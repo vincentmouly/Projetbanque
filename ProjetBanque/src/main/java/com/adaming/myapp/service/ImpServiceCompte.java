@@ -9,9 +9,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.adaming.myapp.dao.ICompteDao;
 import com.adaming.myapp.entities.*;
 
+@Transactional
 public class ImpServiceCompte implements ICompteService{
 	
 	//=========================
@@ -97,6 +100,6 @@ public class ImpServiceCompte implements ICompteService{
 	@Override
 	public Compte addCompteEpargne(Long Idclient, Long idbanque) {
 		// TODO Auto-generated method stub
-		return dao.addCompte(new CompteEpargne(100, new Date(), -100), Idclient, idbanque);
+		return dao.addCompte(new CompteEpargne(100, new Date(), 0.03), Idclient, idbanque);
 	}
 }

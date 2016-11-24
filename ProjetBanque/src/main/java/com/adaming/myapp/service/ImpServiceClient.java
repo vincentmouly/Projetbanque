@@ -9,11 +9,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.adaming.myapp.dao.IClientDao;
 import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Client;
 import com.adaming.myapp.entities.Compte;
 
+@Transactional
 public class ImpServiceClient implements IClientService{
 	
 	//=========================
@@ -38,9 +41,15 @@ public class ImpServiceClient implements IClientService{
 	
 	
 	@Override
-	public Client add(Client entity) {
-		// TODO Auto-generated method stub
-		return dao.add(entity);
+	public Client add(Client c) throws Exception{
+		List<Client> clients = getAll();
+		for(Client c1:clients){
+			if(c1.getNom().equals(c.getNom()) && c1.getPrenom().equals(c.getPrenom()) && c1.getDate_naisssance().equals(c.getDate_naisssance())){
+				throw new Exception("le client : "+c.getNom()+" "+c.getPrenom()+" existe déja!!");
+			}
+		}
+		dao.add(c);
+		return c;
 	}
 
 	@Override
