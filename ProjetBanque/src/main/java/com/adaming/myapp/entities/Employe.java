@@ -40,7 +40,7 @@ public class Employe implements Serializable {
 	//=========================
 	
 	@ManyToOne
-	@JoinColumn(name="IdBanque")
+	@JoinColumn(name="idBanque")
 	private Banque banque;
 	
 	@ManyToMany

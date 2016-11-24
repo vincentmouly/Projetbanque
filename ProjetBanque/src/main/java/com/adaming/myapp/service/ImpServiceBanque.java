@@ -100,4 +100,15 @@ public class ImpServiceBanque implements IServiceBanque {
 		// TODO Auto-generated method stub
 		return dao.getEmployes(b);
 	}
+
+	@Override
+	public Banque addBanque(String NomAgence, String Adresse, String CodePostale) throws ExceptionBanque {
+		List<Banque> banques = getAll();
+		for (Banque b1:banques){
+			if(NomAgence == b1.getNomAgence()){
+				throw new ExceptionBanque("la banque " + b1.getNomAgence() + "existe déja");
+			}
+		}
+		return dao.add(new Banque(NomAgence, Adresse, CodePostale));
+	}
 }
