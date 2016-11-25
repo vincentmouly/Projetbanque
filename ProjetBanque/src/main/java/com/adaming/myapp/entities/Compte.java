@@ -13,6 +13,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Comptes", discriminatorType=DiscriminatorType.STRING)
@@ -22,15 +24,15 @@ public abstract class Compte implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final Long serialVersionUID = 1L;
 	//=========================
 	// Attributes
 	//=========================
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long idCompte;
+	private Long idCompte;
 	private double solde;
-	private Date Date_creation;
+	private Date date_creation;
 	
 	//=========================
 	// Associations
@@ -47,7 +49,7 @@ public abstract class Compte implements Serializable {
 	@JoinColumn(name="IdClient")
 	private Client client;
 	
-	@ManyToMany(mappedBy="comptes")
+	@ManyToMany(mappedBy="comptes", fetch=FetchType.EAGER)
 	private List<Operations> operations = new ArrayList<Operations>();
 	
 	//=========================
@@ -57,10 +59,11 @@ public abstract class Compte implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Compte(double solde, Date date_creation) {
 		super();
 		this.solde = solde;
-		Date_creation = date_creation;
+		this.date_creation = date_creation;
 	}
 	
 	//=========================
@@ -70,55 +73,70 @@ public abstract class Compte implements Serializable {
 	public long getIdCompte() {
 		return idCompte;
 	}
+
 	public void setIdCompte(long idCompte) {
 		this.idCompte = idCompte;
 	}
+
 	public double getSolde() {
 		return solde;
 	}
+
 	public void setSolde(double solde) {
 		this.solde = solde;
 	}
+
 	public Date getDate_creation() {
-		return Date_creation;
+		return date_creation;
 	}
+
 	public void setDate_creation(Date date_creation) {
-		Date_creation = date_creation;
+		this.date_creation = date_creation;
 	}
+
 	public Banque getBanque() {
 		return banque;
 	}
+
 	public void setBanque(Banque banque) {
 		this.banque = banque;
 	}
+
 	public Employe getEmploye() {
 		return employe;
 	}
+
 	public void setEmploye(Employe employe) {
 		this.employe = employe;
 	}
+
 	public Client getClient() {
 		return client;
 	}
+
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
 	public List<Operations> getOperations() {
 		return operations;
 	}
+
 	public void setOperations(List<Operations> operations) {
 		this.operations = operations;
 	}
 	
 	//=========================
-	// Getter / Setter
+	// Methodes
 	//=========================
 	
 	@Override
 	public String toString() {
 		return "Compte [idCompte=" + idCompte + ", solde=" + solde
-				+ ", Date_creation=" + Date_creation + ", banque=" + banque
+				+ ", Date_creation=" + date_creation + ", banque=" + banque
 				+ ", employe=" + employe + ", client=" + client
 				+ ", operations=" + operations + "]";
 	}
+
+	
 }

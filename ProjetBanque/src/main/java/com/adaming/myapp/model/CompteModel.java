@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Client;
 import com.adaming.myapp.entities.Compte;
@@ -12,16 +14,28 @@ import com.adaming.myapp.entities.Operations;
 
 public class CompteModel {
 	//
-	private long idCompte;
+	private Long idCompte;
 	private double solde;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date Date_creation;
 	private Banque banque;
 	private Employe employe;
 	private Client client;
+	private Long idClient;
+	private Long idBanque;
 	
 	private List<Operations> operations = new ArrayList<Operations>();
 	
 	private List<Compte> listeComptes;
+	private String ExceptionCompte;
+
+	public String getExceptionCompte() {
+		return ExceptionCompte;
+	}
+
+	public void setExceptionCompte(String exceptionCompte) {
+		ExceptionCompte = exceptionCompte;
+	}
 
 	public CompteModel() {
 		super();
@@ -90,6 +104,22 @@ public class CompteModel {
 
 	public void setListeComptes(List<Compte> listeComptes) {
 		this.listeComptes = listeComptes;
+	}
+
+	public long getIdClient() {
+		return idClient;
+	}
+
+	public void setIdClient(long idClient) {
+		this.idClient = idClient;
+	}
+
+	public long getIdBanque() {
+		return idBanque;
+	}
+
+	public void setIdBanque(long idBanque) {
+		this.idBanque = idBanque;
 	}
 	
 	
