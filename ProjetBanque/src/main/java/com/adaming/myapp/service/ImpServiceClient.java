@@ -7,6 +7,7 @@ package com.adaming.myapp.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -42,9 +43,9 @@ public class ImpServiceClient implements IClientService{
 	
 	@Override
 	public Client add(Client c) throws Exception{
-		List<Client> clients = getAll();
+		Set<Client> clients = getAll();
 		for(Client c1:clients){
-			if(c1.getNom().equals(c.getNom()) && c1.getPrenom().equals(c.getPrenom()) && c1.getDate_naisssance().equals(c.getDate_naisssance())){
+			if(c1.getNom().equals(c.getNom()) && c1.getPrenom().equals(c.getPrenom()) && c1.getDate_naissance().equals(c.getDate_naissance())){
 				throw new Exception("le client : "+c.getNom()+" "+c.getPrenom()+" existe déja!!");
 			}
 		}
@@ -71,32 +72,31 @@ public class ImpServiceClient implements IClientService{
 	}
 
 	@Override
-	public List<Client> getAll() {
+	public Set<Client> getAll() {
 		// TODO Auto-generated method stub
 		return dao.getAll();
 	}
 
 	@Override
-	public List<Compte> getComptes(Client c) {
+	public Set<Compte> getComptes(Client c) {
 		// TODO Auto-generated method stub
 		return c.getComptes();
 	}
 
 	@Override
-	public List<Client> getClientByMc(String mc) {
+	public Set<Client> getClientByMc(String mc) {
 		// TODO Auto-generated method stub
 		return dao.getClientByMc(mc);
 	}
 
 	@Override
-	public List<Banque> getBanque(Client c) {
+	public Set<Banque> getBanque(Client c) {
 		// TODO Auto-generated method stub
 		return c.getBanques();
 	}
 	@Override
-	public Client addClient(String nom, String prenom, Date dateDeNaissance,
-			String adresse, Long IdBanque) {
+	public Client addClient(Client c, Long IdBanque) {
 
-		return dao.addClient(new Client(nom, prenom, dateDeNaissance, adresse), IdBanque);
+		return dao.addClient(new Client(c.getNom(),c.getPrenom(), c.getDate_naissance(), c.getAdresse()), IdBanque);
 	}
 }
