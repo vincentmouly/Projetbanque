@@ -1,8 +1,10 @@
 package com.adaming.myapp.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Client;
@@ -12,14 +14,33 @@ public class ClientModel {
 	private Long idClient;
 	private String Nom;
 	private String Prenom;
-	private Date date_naisssance;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date date_naissance;
 	private String adresse;
 	private String mc;
+	private Long idBanque;
 	
-	private List<Banque> listeBanques = new ArrayList<Banque>();
-	private List<Compte> listeComptes = new ArrayList<Compte>();
+	public Long getIdBanque() {
+		return idBanque;
+	}
+
+	public void setIdBanque(Long idBanque) {
+		this.idBanque = idBanque;
+	}
+
+	private Set<Banque> listeBanques = new HashSet<Banque>();
+	private Set<Compte> listeComptes = new HashSet<Compte>();
 	
-	private List<Client> listeClients;
+	private Set<Client> listeClients;
+	private String ExceptionClient;
+
+	public String getExceptionClient() {
+		return ExceptionClient;
+	}
+
+	public void setExceptionClient(String exceptionClient) {
+		ExceptionClient = exceptionClient;
+	}
 
 	public ClientModel() {
 		super();
@@ -58,12 +79,12 @@ public class ClientModel {
 		Prenom = prenom;
 	}
 
-	public Date getDate_naisssance() {
-		return date_naisssance;
+	public Date getDate_naissance() {
+		return date_naissance;
 	}
 
-	public void setDate_naisssance(Date date_naisssance) {
-		this.date_naisssance = date_naisssance;
+	public void setDate_naissance(Date date_naissance) {
+		this.date_naissance = date_naissance;
 	}
 
 	public String getAdresse() {
@@ -74,28 +95,28 @@ public class ClientModel {
 		this.adresse = adresse;
 	}
 
-	public List<Banque> getListeBanques() {
+	public Set<Banque> getListeBanques() {
 		return listeBanques;
 	}
 
-	public void setListeBanques(List<Banque> listeBanques) {
-		this.listeBanques = listeBanques;
+	public void setListeBanques(Set<Banque> banques) {
+		this.listeBanques = banques;
 	}
 
-	public List<Compte> getListeComptes() {
+	public Set<Compte> getListeComptes() {
 		return listeComptes;
 	}
 
-	public void setListeComptes(List<Compte> listeComptes) {
-		this.listeComptes = listeComptes;
+	public void setListeComptes(Set<Compte> comptes) {
+		this.listeComptes = comptes;
 	}
 
-	public List<Client> getListeClients() {
+	public Set<Client> getListeClients() {
 		return listeClients;
 	}
 
-	public void setListeClients(List<Client> listeClients) {
-		this.listeClients = listeClients;
+	public void setListeClients(Set<Client> clients) {
+		this.listeClients = clients;
 	}
 	
 	
