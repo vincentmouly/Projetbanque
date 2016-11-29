@@ -6,6 +6,7 @@
 package com.adaming.myapp.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +44,7 @@ public class ImpServiceBanque implements IServiceBanque {
 	
 	@Override
 	public Banque add(Banque b)throws ExceptionBanque {
-		List<Banque> banques = getAll();
+		Set<Banque> banques = getAll();
 		for (Banque b1:banques){
 			if(b.getNomAgence()==b1.getNomAgence()){
 				throw new ExceptionBanque("la banque " + b.getNomAgence() + "existe déja");
@@ -72,17 +73,12 @@ public class ImpServiceBanque implements IServiceBanque {
 	}
 
 	@Override
-	public List<Banque> getAll() {
+	public Set<Banque> getAll() {
 		// TODO Auto-generated method stub
 		return dao.getAll();
 	}
 
-	@Override
-	public List<Client> getClients(Banque b) {
-		// TODO Auto-generated method stub
-		return dao.getClients(b);
-	}
-
+	
 	@Override
 	public List<Groupe> getGroupes(Banque b) {
 		// TODO Auto-generated method stub
@@ -103,12 +99,18 @@ public class ImpServiceBanque implements IServiceBanque {
 
 	@Override
 	public Banque addBanque(String NomAgence, String Adresse, String CodePostale) throws ExceptionBanque {
-		List<Banque> banques = getAll();
+		Set<Banque> banques = getAll();
 		for (Banque b1:banques){
 			if(NomAgence == b1.getNomAgence()){
 				throw new ExceptionBanque("la banque " + b1.getNomAgence() + "existe déja");
 			}
 		}
 		return dao.add(new Banque(NomAgence, Adresse, CodePostale));
+	}
+
+	@Override
+	public Set<Client> getClients(Long idB) {
+		// TODO Auto-generated method stub
+		return dao.getClients(idB);
 	}
 }

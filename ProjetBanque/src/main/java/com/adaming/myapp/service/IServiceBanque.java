@@ -6,6 +6,7 @@
 package com.adaming.myapp.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.adaming.myapp.entities.Banque;
 import com.adaming.myapp.entities.Client;
@@ -21,7 +22,7 @@ public interface IServiceBanque extends IGeneriqueService<Banque> {
 
 	Banque addBanque (String NomAgence, String Adresse, String CodePostale) throws ExceptionBanque;
 	
-	List<Client> getClients(Banque b);
+	Set<Client> getClients(Long idB);
 	
 	List<Groupe> getGroupes(Banque b);
 	

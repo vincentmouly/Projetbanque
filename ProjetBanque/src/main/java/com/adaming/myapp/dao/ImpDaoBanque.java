@@ -1,6 +1,7 @@
 package com.adaming.myapp.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.adaming.myapp.entities.*;
 
@@ -31,15 +32,16 @@ public class ImpDaoBanque extends AbstractJpa<Banque> implements IBanqueDao{
 	}
 
 	@Override
-	public List<Banque> getAll() {
+	public Set<Banque> getAll() {
 		// TODO Auto-generated method stub
 		return getAllAbstractJpa();
 	}
 
 	@Override
-	public List<Client> getClients(Banque b) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<Client> getClients(Long idB) {
+	Banque b = em.find(Banque.class,idB);
+	Set<Client> clients = b.getClients();
+		return clients;
 	}
 
 	@Override
