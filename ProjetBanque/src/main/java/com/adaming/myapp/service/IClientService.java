@@ -5,18 +5,19 @@
  */
 package com.adaming.myapp.service;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import com.adaming.myapp.entities.*;
+import com.adaming.myapp.exception.ExceptionClient;
 
 public interface IClientService extends IGeneriqueService<Client>{
 
-	List<Compte> getComptes(Client c);
+	Set<Compte> getComptes(Client c);
 	
-	List<Client> getClientByMc(String mc);
+	Set<Client> getClientByMc(String mc);
 	
-	List<Banque> getBanque(Client c);
+	Set<Banque> getBanque(Client c);
 	
-	Client addClient(String nom, String prenom, Date dateDeNaissance, String adresse, Long IdBanque);
+	Client addClient(Client c, Long IdBanque) throws ExceptionClient;
 }
